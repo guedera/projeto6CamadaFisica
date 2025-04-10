@@ -1,4 +1,7 @@
 # projeto6CamadaFisica
+Em caso de erro:
+
+    sudo apt install libportaudio2
 
 ## Computador 1
 Computador toca audio por alguns segundos com 3 frequências específicas e múltiplos inteiras dessas frequências
