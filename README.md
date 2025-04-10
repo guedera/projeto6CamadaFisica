@@ -5,7 +5,7 @@ Computador toca audio por alguns segundos com 3 frequências específicas e múl
 
 (ocidental, 12 freqs)
 
-para reproduzir o som, bib do python "sounddevice"
+para reproduzir o som, bib do python "sounddevice"!
 
 gera 3 senoides das frequencias que quero
 somo elas
