@@ -1,12 +1,16 @@
 import numpy as np
 import sounddevice as sd
 import time
+import matplotlib
 import matplotlib.pyplot as plt
-from scipy import fftpack  # Importando fftpack do scipy para a transformada de Fourier
+
+from scipy import fftpack  #Importando fftpack do scipy para a transformada de Fourier
 
 fs = 44100  #Taxa de amostragem em Hz
 duration = 5  #Duração da gravação em segundos
 channels = 1  #Mono
+
+matplotlib.use('TkAgg')
 
 def record_audio():
     print("Iniciando gravação!")
@@ -25,7 +29,7 @@ def compute_fft(audio):
     #Criar array de frequências correspondentes
     xf = np.linspace(0.0, fs/2, N//2)
     
-    #pega freqs positivas e normaliza amplitudes
+    #Pega freqs positivas e normaliza amplitudes
     return xf[:N//2], 2.0/N * np.abs(yf[:N//2])
 
 def plot_audio_signal(audio):
@@ -52,14 +56,14 @@ def plot_fft(frequencies, magnitudes):
     plt.xlim(0, 2000)
     plt.show()
 
-# Gravar o áudio
+#Gravar o áudio
 audio = record_audio()
 
-# Plotar o sinal no domínio do tempo
+#Plotar o sinal no domínio do tempo
 plot_audio_signal(audio)
 
-# Calcular a transformada de Fourier
+#Calcular a transformada de Fourier
 frequencies, magnitudes = compute_fft(audio)
 
-# Plotar o espectro de frequência
+#Plotar o espectro de frequência
 plot_fft(frequencies, magnitudes)
