@@ -40,7 +40,7 @@ def main():
     print(f"Tocando o acorde: {chord_name} ({frequencies} Hz)")
     #Gera o som com as paradas que vc escolheu
     tone = generate_tone(frequencies, duration, fs)
-    # Toca o bagulho no seu PC
+    #Toca o bagulho no seu PC
     sd.play(tone, fs)
     #Espera acabar de tocar
     sd.wait()
