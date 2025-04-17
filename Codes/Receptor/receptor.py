@@ -65,7 +65,49 @@ def plot_fft(frequencies, magnitudes):
         plt.text(freq, mag, f'{freq:.2f} Hz', fontsize=9, ha='center', va='bottom', color='blue')
     plt.legend()
     print("Frequências dos 5 picos mais presentes:", top_frequencies)
+    
+    #Identificar o acorde
+    detected_chord = identify_chord(top_frequencies)
+    print(f"Acorde detectado: {detected_chord}")
+    
     plt.show()
+
+def identify_chord(peak_frequencies, tolerance=1.5):
+    #acordes cadastradsos
+    chords = {
+        "Dó maior": [523.25, 659.25, 783.99],
+        "Ré menor": [587.33, 698.46, 880.00],
+        "Mi menor": [659.25, 783.99, 987.77],
+        "Fá maior": [698.46, 880.00, 1046.50],
+        "Sol maior": [783.99, 987.77, 1174.66],
+        "Lá menor": [880.00, 1046.50, 1318.51],
+        "Si menor 5b": [493.88, 587.33, 698.46],
+        "Jimi Hendrix (E7#9)": [329.63, 392.00, 587.33],
+    }
+    
+    best_match = None
+    max_matches = 0
+    
+    for chord_name, chord_freqs in chords.items():
+        matches = 0
+        
+        #Para cada frequência do acorde ve se tem um pico próximo (tolerancia de erro de 1.5 Hz)
+        for chord_freq in chord_freqs:
+            for peak_freq in peak_frequencies:
+                if abs(peak_freq - chord_freq) <= tolerance:
+                    matches += 1
+                    break  #Encontrou correspondência para esta frequência vai pra next
+        
+        #atualizar melhor correspondência
+        if matches > max_matches:
+            max_matches = matches
+            best_match = chord_name
+    
+    #3 frequências do acorde para uma correspondência completa
+    if max_matches == 3:
+        return best_match
+    else:
+        return "Acorde não identificado"
 
 audio = record_audio()
 plot_audio_signal(audio)

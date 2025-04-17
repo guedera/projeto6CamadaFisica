@@ -10,12 +10,13 @@ chords = {
     "Sol maior": [783.99, 987.77, 1174.66],
     "Lá menor": [880.00, 1046.50, 1318.51],
     "Si menor 5b": [493.88, 587.33, 698.46],
+    "Jimi Hendrix (E7#9)": [329.63, 392.00, 587.33],
 }
 
 #Taxa de amostragem
 fs = 44100
 #Quanto tempo vai rolar o som
-duration = 8
+duration = 10
 
 #Essa função aqui gera os sons
 def generate_tone(frequencies, duration, fs):
